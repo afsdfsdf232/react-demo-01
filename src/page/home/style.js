@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-
+import top from '../../statics/top.png'
 
 export const HomeWrapper = styled.div`
+    margin:0 auto;
     width: 960px;
     overflow: hidden
 `
@@ -68,6 +69,18 @@ export const ListInfo = styled.div`
         padding-right: 10px;
     }
 `
+export const LoadMore = styled.div`
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background: #a5a5a5;
+    text-align: center;
+    border-radius: 20px;
+    margin: 30px 0;
+    color: #fff;
+    cursor: pointer
+
+`
 export const HomeRight = styled.div`
     width: 280px;
     float: right;
@@ -81,4 +94,30 @@ export const RecommendItem = styled.div`
     height: 50px;
     background: url(${(props) => props.imgUrl});
     background-size: contain
+`
+export const WriterWrapper = styled.div`
+    width: 278px;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    height: 300px;
+    line-height: 300px;
+    text-align: center
+`
+export const BackTop = styled.div`
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    right: 0;
+    bottom: 30px;
+    .top {
+        width: 20px;
+        height: 20px;
+        display: block;
+        background: url(${top});
+        margin-top: 15px;
+        margin-left: 15px
+    }
 `

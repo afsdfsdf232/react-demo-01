@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import Topic from './components/Topic'
 import List from './components/List'
-import Recommend from './components/Recommend'
+import Recommend from './components/Recommend' 
+import { getList } from './store/actionCreateors'
+import { connect } from 'react-redux' 
 import Writer from './components/Writer'
+import {  SHOWSCROLLTRUE, SHOWSCROLLFALSE } from './store/actionType'
 import { 
     HomeWrapper, 
     HomeLeft, 
-    HomeRight 
+    HomeRight,
+    BackTop 
     } 
     from './style'
 
+
 class Home extends Component{
+    handelScrollTop(){
+        window.scrollTo(0,0)
+    }
     render(){
         return (
             <HomeWrapper>
@@ -23,8 +31,39 @@ class Home extends Component{
                     <Recommend/>
                     <Writer/>
                 </HomeRight>
+                {  this.props.isShow? <BackTop title="回到顶部" onClick={this.handelScrollTop}><span  className='top'></span></BackTop> : null }
             </HomeWrapper>
         )
     }
+    componentDidMount(){
+        this.props.changeHomeListData()
+        window.addEventListener('scroll', this.props.scrollToTop);
+        
+    }
 }
-export default Home
+const mapStateToProps = (state) => ({
+    isShow:state.getIn(['home','isShow'])
+})
+const mapDispatchToProps = (dispatch) =>({
+        changeHomeListData(){
+            const action = getList()
+            dispatch(action)
+        },
+        scrollToTop(){
+            let h = window.screen.height
+            let scrollTop  = document.documentElement.scrollTop;  //滚动条滚动高度
+            
+            if(scrollTop>h/2){
+                const action = {
+                    type: SHOWSCROLLTRUE
+                }
+                dispatch(action)
+            }else{
+                const action = {
+                    type: SHOWSCROLLFALSE
+                }
+                dispatch(action)
+            }
+        }
+})
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
