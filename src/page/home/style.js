@@ -110,8 +110,8 @@ export const BackTop = styled.div`
     line-height: 60px;
     text-align: center;
     border: 1px solid #ccc;
-    right: 0;
-    bottom: 30px;
+    right: 15px;
+    bottom: 50px;
     .top {
         width: 20px;
         height: 20px;

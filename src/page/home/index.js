@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Topic from './components/Topic'
 import List from './components/List'
 import Recommend from './components/Recommend' 
@@ -15,7 +15,7 @@ import {
     from './style'
 
 
-class Home extends Component{
+class Home extends PureComponent{
     handelScrollTop(){
         window.scrollTo(0,0)
     }
@@ -37,8 +37,10 @@ class Home extends Component{
     }
     componentDidMount(){
         this.props.changeHomeListData()
-        window.addEventListener('scroll', this.props.scrollToTop);
-        
+        window.addEventListener('scroll', this.props.scrollToTop)
+    }
+    componentWillUnmount(){
+        window.removeEventListener('scroll', this.props.scrollToTop)
     }
 }
 const mapStateToProps = (state) => ({

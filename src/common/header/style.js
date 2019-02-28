@@ -8,10 +8,7 @@ export const HeaderWrapper = styled.div`
     position: relative;
     min-width: 1168px;
 `
- export const Logo = styled.a.attrs({
-     href: '/'
- })`
-    display:block;
+ export const Logo = styled.div`
     background: url(${logoPic});
     position: absolute;
     top: 0;
