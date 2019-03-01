@@ -29,6 +29,7 @@ export const HeaderWrapper = styled.div`
     padding:0 15px;
     font-size:17px;
     color: #333;
+    cursor: pointer;
     &.left {
         float: left;
     }

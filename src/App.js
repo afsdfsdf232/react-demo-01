@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import store from './store'
 import Home from './page/home'
 import Detail from './page/detail'
+import Write from './page/write'
 class App extends Component {
   render() {
     return (
@@ -16,6 +17,7 @@ class App extends Component {
                 <Route path='/' exact component={Home}></Route>
                 <Route path='/detail' exact component={Detail}></Route>
                 <Login path='/login' exact component={Login} />
+                <Write path='/write' exact component={Write}/>
               </div>
             </BrowserRouter>
       </Provider>

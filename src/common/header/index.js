@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import { searchFocus, searchBlur, getList, mouseEnter, mouseLeave, changePage } from './store/actionCreators'
+import { outLogin } from '../../page/login/store/actionCreators'
 import { 
             HeaderWrapper, 
             Logo, 
@@ -111,17 +112,29 @@ import {
             return null
         }
     }
+    getLogin(){
+        if(this.props.login){
+            return (
+                <NavItem className='right' onClick={this.props.handeExit}>退出</NavItem>
+            )
+        }else{
+            return (
+                <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+            )
+        }
+    }
     render(){
         const { focused, handleInputFocus, handleInputBlur, list } = this.props
+        
         return (
             <HeaderWrapper>
             <Link to='/'>
                 <Logo/>
             </Link>
             <Nav>
-                <NavItem className='left active'>首页</NavItem>
+            <Link to='/'><NavItem className='left active'>首页</NavItem></Link>
                 <NavItem className='left'>下载App</NavItem>
-                <NavItem className='right'>登录</NavItem>
+                { this.getLogin()}
                 <NavItem className='right'>Aa</NavItem>
                 <SearchWrapper>
                     <CSSTransition
@@ -138,7 +151,7 @@ import {
                     { this.getListArea()}
                 </SearchWrapper>
                 <Addition>
-                    <Button className='writting'>写文章</Button>
+                   <Link to='/write'> <Button className='writting'>写文章</Button></Link>
                     <Button className='reg'>注册</Button>
                 </Addition>
             </Nav>
@@ -153,7 +166,8 @@ const mapStateToProps = (state) => {
         list: state.getIn(['header','list']),
         page: state.getIn(['header','page']),
         mouseIn: state.getIn(['header','mouseIn']),
-        totalPage:state.getIn(['header','totalPage'])
+        totalPage:state.getIn(['header','totalPage']),
+        login: state.getIn(['login','login'])
     }
 }
 const mapDispatchToProps = (dispatch) =>{
@@ -177,6 +191,9 @@ const mapDispatchToProps = (dispatch) =>{
             spin.style.transform=`rotate(${originAngle+360}deg)`
             page == totalPage? page=1: page+=1
             dispatch(changePage(page))
+        },
+        handeExit(){
+            dispatch(outLogin())
         }
     }
 }

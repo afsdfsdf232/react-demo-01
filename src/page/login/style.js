@@ -3,13 +3,15 @@ import h from '../../statics/h.png'
 export const LoginSwrapper = styled.div`
     background: #eee;
     height: 900px;
-    
+    position: relative;
 `
 export const LoginBox = styled.div`
-    
+    position: absolute;
+    top: 50px;
+    left: 40%;
+    transfrom: translate(-50%);
     width: 400px;
     height: 500px;
-    margin: 0px auto;
     background: #fff;
     box-shadow: 0 0 8px reba(0,0,0,.1);
     div {
