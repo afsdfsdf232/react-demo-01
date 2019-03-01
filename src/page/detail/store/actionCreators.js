@@ -1,16 +1,14 @@
 import axios from 'axios'
-export const getDetailInfo = () =>{
+const getDeatailData =(data) =>({
+        type:'get_detail_info',
+        title: data.title,
+        content: data.content
+})
+export const getDetailInfo = (id) =>{
     return (dispatch) => {
-        axios.get('api/detailInfo.json').then((res)=>{
-            // console.log(res)
+        axios.get('api/detailInfo.json?id='+id).then((res)=>{
             const data = res.data.data
-            // console.log('kk',data)
-            const action = {
-                type:'get_detail_info',
-                title: data.title,
-                content: data.content
-            }
-            dispatch(action)
+            dispatch(getDeatailData(data))
         })
     }
 }

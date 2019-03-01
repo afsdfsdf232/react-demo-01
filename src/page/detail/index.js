@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 class Detail extends Component{
     render(){
         const { title, content } = this.props
+       
         return (
             <DetaileWrapper>
                 <Header>{title}</Header>
@@ -13,7 +14,8 @@ class Detail extends Component{
         )
     }
     componentDidMount(){
-        this.props.getDetaData()
+        let id = this.props.location.search.split('=')[1]
+        this.props.getDetaData(id)
     }
 }
 
@@ -22,8 +24,8 @@ const mapStateToProps = (state) =>({
     content: state.getIn(['detail','content'])
 })
 const mapDispatchToProps = (dispatch) =>({
-    getDetaData(){
-        const action = getDetailInfo()
+    getDetaData(id){
+        const action = getDetailInfo(id)
         dispatch(action)
     }
     

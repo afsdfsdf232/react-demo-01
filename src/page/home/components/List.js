@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom'
 class List extends Component{
     render(){
         const { lista, handelMoreInfo } = this.props
+        
         return (
             <div>
                 {
                     lista.map((item,index) => {
                         return (
-                            <Link key={index} to='/detail'>
+                            <Link key={index} to={'/detail?id='+item.id}>
                                 <ListItem>
                                     <img className='pic' src={item.imgUrl}/>
                                     <ListInfo>
